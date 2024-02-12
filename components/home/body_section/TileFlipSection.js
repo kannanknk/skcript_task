@@ -2,6 +2,7 @@ import React from "react";
 import TileTemplate from "./TileTemplate";
 import BackCard from "./BackCard";
 import TiltTemplate from "./TiltTemplate";
+import { InView } from "react-intersection-observer";
 
 const TileFlipSection = () => {
   return (
@@ -10,26 +11,35 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full col-span-2 h-[600px]"}
           childrenFront={
-            <TileTemplate
-              iconClassName={"bg-black group-hover:opacity-80"}
-              iconStroke={"currentColor"}
-              className={"col-span-2 h-[600px] text-4xl font-semibold"}
-            >
-              <div className="w-full absolute bottom-0 left-0 flex items-center justify-center">
-                <div
-                  className="w-[696px] h-[492px]"
-                  style={{
-                    backgroundImage:
-                      "url(https://www.apple.com/v/apple-card/l/images/overview/built_for_iphone__d59h2lf8xtiu_medium.jpg)",
-                  }}
-                ></div>
-                <h1 className="absolute right-40 top-10">
-                  Created by Apple.
-                  <br />
-                  Powered by iPhone.
-                </h1>
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  iconClassName={"bg-black group-hover:opacity-80"}
+                  iconStroke={"currentColor"}
+                  className={`${
+                    inView ? "animate-drop-up" : ""
+                  } col-span-2 h-[600px] text-4xl font-semibold`}
+                >
+                  <div
+                    className={`w-full absolute bottom-0 left-0 flex items-center justify-center`}
+                  >
+                    <div
+                      className="w-[696px] h-[492px]"
+                      style={{
+                        backgroundImage:
+                          "url(https://www.apple.com/v/apple-card/l/images/overview/built_for_iphone__d59h2lf8xtiu_medium.jpg)",
+                      }}
+                    ></div>
+                    <h1 className="absolute right-40 top-10">
+                      Created by Apple.
+                      <br />
+                      Powered by iPhone.
+                    </h1>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -45,21 +55,28 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full h-[800px]"}
           childrenFront={
-            <TileTemplate
-              className={"w-full h-[800px] m-auto"}
-              iconClassName={"bg-white group-hover:opacity-80"}
-              iconStroke={"pink"}
-              bg="radial-gradient(ellipse at 5% 5%, #fec833 0%, rgba(254,200,51,0) 75%),radial-gradient(ellipse at 95% 5%, #fdc1a7 0%, rgba(253,193,167,0) 75%),radial-gradient(ellipse at 95% 95%, #e4699a 15%, rgba(228,105,154,0) 75%),radial-gradient(ellipse at 5% 95%, #eb5551 30%, rgba(235,85,81,0) 75%)"
-            >
-              <div className="flex items-center justify-center h-full px-9 py-4">
-                <div className="text-9xl text-white font-bold">
-                  <h1>No fees.</h1>
-                  <h1>Not</h1>
-                  <h1>even</h1>
-                  <h1>hidden ones.</h1>
-                </div>
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  className={`${
+                    inView ? "animate-drop-up" : ""
+                  } w-full h-[800px] m-auto`}
+                  iconClassName={"bg-white group-hover:opacity-80"}
+                  iconStroke={"pink"}
+                  bg="radial-gradient(ellipse at 5% 5%, #fec833 0%, rgba(254,200,51,0) 75%),radial-gradient(ellipse at 95% 5%, #fdc1a7 0%, rgba(253,193,167,0) 75%),radial-gradient(ellipse at 95% 95%, #e4699a 15%, rgba(228,105,154,0) 75%),radial-gradient(ellipse at 5% 95%, #eb5551 30%, rgba(235,85,81,0) 75%)"
+                >
+                  <div className="flex items-center justify-center h-full px-9 py-4">
+                    <div className="text-9xl text-white font-bold">
+                      <h1>No fees.</h1>
+                      <h1>Not</h1>
+                      <h1>even</h1>
+                      <h1>hidden ones.</h1>
+                    </div>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -75,25 +92,32 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full h-[800px]"}
           childrenFront={
-            <TileTemplate
-              className={"w-full h-[800px] m-auto"}
-              iconClassName={"bg-black group-hover:opacity-80"}
-              iconStroke={"currentColor"}
-            >
-              <div className="flex items-center justify-center h-full px-9 py-4">
-                <div className="text-7xl text-black font-bold">
-                  <h1>
-                    The first credit card that actually encourages you to pay
-                    less interest.
-                  </h1>
-                </div>
-                <img
-                  className="object-cover absolute top-0"
-                  src="/images/interest_wheel.jpg"
-                  alt="logo"
-                />
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  className={`${
+                    inView ? "animate-drop-up" : ""
+                  } w-full h-[800px] m-auto`}
+                  iconClassName={"bg-black group-hover:opacity-80"}
+                  iconStroke={"currentColor"}
+                >
+                  <div className="flex items-center justify-center h-full px-9 py-4">
+                    <div className="text-7xl text-black font-bold">
+                      <h1>
+                        The first credit card that actually encourages you to
+                        pay less interest.
+                      </h1>
+                    </div>
+                    <img
+                      className="object-cover absolute top-0"
+                      src="/images/interest_wheel.jpg"
+                      alt="logo"
+                    />
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -109,34 +133,43 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full col-span-2 h-[800px]"}
           childrenFront={
-            <TileTemplate
-              iconClassName={"bg-white group-hover:opacity-80"}
-              iconStroke={"black"}
-              className={"col-span-2 h-[800px] "}
-              bg="black"
-            >
-              <img
-                className="object-cover absolute top-20 right-28"
-                src="/images/daily_cash_endframe.jpg"
-                alt="logo"
-              />
-              <div className="absolute left-10 bottom-40">
-                <h1 className="text-8xl font-bold text-white ">
-                  Unlimited
-                  <br />
-                  Daily Cash back.
-                </h1>
-                <p
-                  className="text-4xl mt-7 font-bold bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #61a87b, #69bf74 25%, #b8ce66 84%)",
-                  }}
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  iconClassName={`bg-white group-hover:opacity-80`}
+                  iconStroke={"black"}
+                  className={"col-span-2 h-[800px] "}
+                  bg="black"
                 >
-                  Real cash you can use right away.
-                </p>
-              </div>
-            </TileTemplate>
+                  <img
+                    className="object-cover absolute top-20 right-28"
+                    src="/images/daily_cash_endframe.jpg"
+                    alt="logo"
+                  />
+                  <div
+                    className={`${
+                      inView ? "animate-drop-up" : ""
+                    } absolute left-10 bottom-40`}
+                  >
+                    <h1 className="text-8xl font-bold text-white ">
+                      Unlimited
+                      <br />
+                      Daily Cash back.
+                    </h1>
+                    <p
+                      className="text-4xl mt-7 font-bold bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(90deg, #61a87b, #69bf74 25%, #b8ce66 84%)",
+                      }}
+                    >
+                      Real cash you can use right away.
+                    </p>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -153,31 +186,38 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full h-[800px]"}
           childrenFront={
-            <TileTemplate
-              className={"w-full h-[800px] m-auto"}
-              iconClassName={"bg-black group-hover:opacity-80"}
-              iconStroke={"currentColor"}
-            >
-              <div className="flex items-center justify-center h-full px-9 py-4">
-                <div className="text-6xl text-black font-bold">
-                  <h1
-                    className=" bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(90deg, #90ca5a, #d7d65a 50%, #dac355 70%)",
-                    }}
-                  >
-                    Get 3% Daily Cash back at Apple. And at select merchants
-                    when you use Apple Pay.
-                  </h1>
-                  <img
-                    className="w-9/12 object-cover mt-8"
-                    src="/images/company_logos.PNG"
-                    alt="logo"
-                  />
-                </div>
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  className={`${
+                    inView ? "animate-drop-up" : ""
+                  } w-full h-[800px] m-auto`}
+                  iconClassName={"bg-black group-hover:opacity-80"}
+                  iconStroke={"currentColor"}
+                >
+                  <div className="flex items-center justify-center h-full px-9 py-4">
+                    <div className="text-6xl text-black font-bold">
+                      <h1
+                        className=" bg-clip-text text-transparent"
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(90deg, #90ca5a, #d7d65a 50%, #dac355 70%)",
+                        }}
+                      >
+                        Get 3% Daily Cash back at Apple. And at select merchants
+                        when you use Apple Pay.
+                      </h1>
+                      <img
+                        className="w-9/12 object-cover mt-8"
+                        src="/images/company_logos.PNG"
+                        alt="logo"
+                      />
+                    </div>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -195,26 +235,33 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full h-[800px]"}
           childrenFront={
-            <TileTemplate
-              className={"w-full h-[800px] m-auto"}
-              iconClassName={"bg-white group-hover:opacity-80"}
-              iconStroke={"blue"}
-              bg="radial-gradient(ellipse at 5% 5%, #7bcf6a 0%, rgba(123,207,106,0) 75%),radial-gradient(ellipse at 95% 5%, #aec154 0%, rgba(174,193,84,0) 75%),radial-gradient(ellipse at 95% 95%, #68a9bb 0%, rgba(104,169,187,0) 75%),radial-gradient(ellipse at 5% 95%, #5fc28a 0%, rgba(95,194,138,0) 75%)"
-            >
-              <div className="flex flex-col gap-14 items-center justify-center h-full px-9 py-4">
-                <div className="text-5xl text-white font-bold">
-                  <h1>
-                    Get 2% Daily Cash back when you use Apple Card with Apple
-                    Pay.
-                  </h1>
-                </div>
-                <img
-                  className="w-9/12 object-cover mt-8"
-                  src="/images/cash_back.png"
-                  alt="logo"
-                />
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  className={`${
+                    inView ? "animate-drop-up" : ""
+                  } w-full h-[800px] m-auto`}
+                  iconClassName={"bg-white group-hover:opacity-80"}
+                  iconStroke={"blue"}
+                  bg="radial-gradient(ellipse at 5% 5%, #7bcf6a 0%, rgba(123,207,106,0) 75%),radial-gradient(ellipse at 95% 5%, #aec154 0%, rgba(174,193,84,0) 75%),radial-gradient(ellipse at 95% 95%, #68a9bb 0%, rgba(104,169,187,0) 75%),radial-gradient(ellipse at 5% 95%, #5fc28a 0%, rgba(95,194,138,0) 75%)"
+                >
+                  <div className="flex flex-col gap-14 items-center justify-center h-full px-9 py-4">
+                    <div className="text-5xl text-white font-bold">
+                      <h1>
+                        Get 2% Daily Cash back when you use Apple Card with
+                        Apple Pay.
+                      </h1>
+                    </div>
+                    <img
+                      className="w-9/12 object-cover mt-8"
+                      src="/images/cash_back.png"
+                      alt="logo"
+                    />
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -232,34 +279,45 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full col-span-2 h-[800px]"}
           childrenFront={
-            <TileTemplate
-              iconClassName={"bg-white group-hover:opacity-80"}
-              iconStroke={"black"}
-              className={"col-span-2 h-[800px] "}
-              bg="black"
-            >
-              <div className="px-16 py-10">
-                <h1 className="text-9xl font-bold text-white ">Grow your</h1>
-                <h1
-                  className="text-9xl font-bold text-white bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #61a87b, #69bf74 25%, #b8ce66 84%)",
-                  }}
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  iconClassName={`bg-white group-hover:opacity-80`}
+                  iconStroke={"black"}
+                  className={"col-span-2 h-[800px] "}
+                  bg="black"
                 >
-                  Daily Cash
-                </h1>
-                <h1 className="text-9xl font-bold text-white ">over time.</h1>
-                <p className="text-4xl mt-7 text-white font-bold ">
-                  Automatically save it and earn interest.
-                </p>
-              </div>
-              <img
-                className="w-full object-cover mt-8 absolute bottom-0 left-0 rounded-3xl"
-                src="/images/daily_cash_graph.jpg"
-                alt="logo"
-              />
-            </TileTemplate>
+                  <div
+                    className={`${inView ? "animate-drop-up" : ""} px-16 py-10`}
+                  >
+                    <h1 className="text-9xl font-bold text-white ">
+                      Grow your
+                    </h1>
+                    <h1
+                      className="text-9xl font-bold text-white bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(90deg, #61a87b, #69bf74 25%, #b8ce66 84%)",
+                      }}
+                    >
+                      Daily Cash
+                    </h1>
+                    <h1 className="text-9xl font-bold text-white ">
+                      over time.
+                    </h1>
+                    <p className="text-4xl mt-7 text-white font-bold ">
+                      Automatically save it and earn interest.
+                    </p>
+                  </div>
+                  <img
+                    className="w-full object-cover mt-8 absolute bottom-0 left-0 rounded-3xl"
+                    src="/images/daily_cash_graph.jpg"
+                    alt="logo"
+                  />
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -278,29 +336,38 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full col-span-2 h-[800px]"}
           childrenFront={
-            <TileTemplate
-              iconClassName={"bg-black group-hover:opacity-80"}
-              iconStroke={"white"}
-              className={"col-span-2 h-[800px] "}
-              bg="white"
-            >
-              <div className="px-16 py-16 mb-16 absolute bottom-0 left-0">
-                <p className="text-3xl mt-7 text-black font-bold ">
-                  Apple Card Family
-                </p>
-                <h1 className="text-8xl font-bold text-black ">
-                  Healthy finances.
-                </h1>
-                <h1 className="text-8xl font-bold text-black ">
-                  Family style.
-                </h1>
-              </div>
-              <img
-                className="w-full h-1/2 object-cover absolute top-0 left-0 rounded-3xl"
-                src="/images/apple_card_family.jpg"
-                alt="logo"
-              />
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  iconClassName={`bg-black group-hover:opacity-80`}
+                  iconStroke={"white"}
+                  className={"col-span-2 h-[800px] "}
+                  bg="white"
+                >
+                  <div
+                    className={`${
+                      inView ? "animate-drop-up" : ""
+                    } px-16 py-16 mb-16 absolute bottom-0 left-0`}
+                  >
+                    <p className="text-3xl mt-7 text-black font-bold ">
+                      Apple Card Family
+                    </p>
+                    <h1 className="text-8xl font-bold text-black ">
+                      Healthy finances.
+                    </h1>
+                    <h1 className="text-8xl font-bold text-black ">
+                      Family style.
+                    </h1>
+                  </div>
+                  <img
+                    className="w-full h-1/2 object-cover absolute top-0 left-0 rounded-3xl"
+                    src="/images/apple_card_family.jpg"
+                    alt="logo"
+                  />
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -319,25 +386,36 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full col-span-2 h-[800px]"}
           childrenFront={
-            <TileTemplate
-              iconClassName={"bg-white group-hover:opacity-80"}
-              iconStroke={"black"}
-              className={"col-span-2 h-[800px] "}
-              bg="grey"
-            >
-              <img
-                className="w-full h-full object-cover absolute top-0 left-0 rounded-3xl"
-                src="/images/titanium_card_endframe.jpg"
-                alt="logo"
-              />
-              <div className="absolute left-10 bottom-28">
-                <h1 className="text-8xl font-bold text-white ">
-                  Goodbye, plastic.
-                  <br />
-                  Hello, titanium.
-                </h1>
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  iconClassName={`${
+                    inView ? "animate-drop-up" : ""
+                  } bg-white group-hover:opacity-80`}
+                  iconStroke={"black"}
+                  className={"col-span-2 h-[800px] "}
+                  bg="grey"
+                >
+                  <img
+                    className="w-full h-full object-cover absolute top-0 left-0 rounded-3xl"
+                    src="/images/titanium_card_endframe.jpg"
+                    alt="logo"
+                  />
+                  <div
+                    className={`${
+                      inView ? "animate-drop-up" : ""
+                    } absolute left-10 bottom-28`}
+                  >
+                    <h1 className="text-8xl font-bold text-white ">
+                      Goodbye, plastic.
+                      <br />
+                      Hello, titanium.
+                    </h1>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -354,25 +432,34 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full col-span-2 h-[800px]"}
           childrenFront={
-            <TileTemplate
-              iconClassName={"bg-white group-hover:opacity-80"}
-              iconStroke={"orange"}
-              className={"col-span-2 h-[800px] "}
-              bg="radial-gradient(ellipse at 5% 5%, #f0acad 0%, rgba(240,172,173,0) 75%),radial-gradient(ellipse at 95% 5%, #f8ae4b 0%, rgba(248,174,75,0) 75%),radial-gradient(ellipse at 95% 95%, #dbb048 -15%, rgba(219,176,72,0) 75%),radial-gradient(ellipse at 5% 95%, #c284e9 50%, rgba(194,132,233,0) 75%)"
-            >
-              <div className="absolute left-10 bottom-40">
-                <p className="text-3xl mt-7 text-white font-bold ">
-                  Privacy and Security
-                </p>
-                <h1 className="text-9xl font-bold text-white ">
-                  Your card.
-                  <br />
-                  Your info.
-                  <br />
-                  Your business.
-                </h1>
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  iconClassName={` bg-white group-hover:opacity-80`}
+                  iconStroke={"orange"}
+                  className={"col-span-2 h-[800px] "}
+                  bg="radial-gradient(ellipse at 5% 5%, #f0acad 0%, rgba(240,172,173,0) 75%),radial-gradient(ellipse at 95% 5%, #f8ae4b 0%, rgba(248,174,75,0) 75%),radial-gradient(ellipse at 95% 95%, #dbb048 -15%, rgba(219,176,72,0) 75%),radial-gradient(ellipse at 5% 95%, #c284e9 50%, rgba(194,132,233,0) 75%)"
+                >
+                  <div
+                    className={`${
+                      inView ? "animate-drop-up" : ""
+                    } absolute left-10 bottom-40`}
+                  >
+                    <p className="text-3xl mt-7 text-white font-bold ">
+                      Privacy and Security
+                    </p>
+                    <h1 className="text-9xl font-bold text-white ">
+                      Your card.
+                      <br />
+                      Your info.
+                      <br />
+                      Your business.
+                    </h1>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -388,29 +475,36 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full col-span-2 h-[800px]"}
           childrenFront={
-            <TileTemplate
-              iconClassName={"bg-black group-hover:opacity-80"}
-              iconStroke={"white"}
-              className={"col-span-2 h-[800px] "}
-              bg="white"
-            >
-              <div className="grid grid-cols-2 grid-flow-col h-full items-center">
-                <img
-                  className="col-span-1 w-full object-cover"
-                  src="/images/acmi_tile.jpg"
-                  alt="logo"
-                />
-                <div className="px-20 py-16 mb-16">
-                  <h1 className="text-6xl font-bold text-black ">
-                    Pay for your new Apple products over time, interest-free
-                  </h1>
-                  <p className="text-3xl mt-7 text-black font-bold ">
-                    when you choose to check out with Apple Card Monthly
-                    Installments.
-                  </p>
-                </div>
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  iconClassName={` bg-black group-hover:opacity-80`}
+                  iconStroke={"white"}
+                  className={"col-span-2 h-[800px] "}
+                  bg="white"
+                >
+                  <div className="grid grid-cols-2 grid-flow-col h-full items-center">
+                    <img
+                      className={`${
+                        inView ? "animate-drop-up" : ""
+                      } col-span-1 w-full object-cover`}
+                      src="/images/acmi_tile.jpg"
+                      alt="logo"
+                    />
+                    <div className="px-20 py-16 mb-16">
+                      <h1 className="text-6xl font-bold text-black ">
+                        Pay for your new Apple products over time, interest-free
+                      </h1>
+                      <p className="text-3xl mt-7 text-black font-bold ">
+                        when you choose to check out with Apple Card Monthly
+                        Installments.
+                      </p>
+                    </div>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -429,18 +523,27 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full h-[800px]"}
           childrenFront={
-            <TileTemplate
-              className={"w-full h-[800px] m-auto"}
-              iconClassName={"bg-white group-hover:opacity-80"}
-              iconStroke={"black"}
-              bg="black"
-            >
-              <div className="flex flex-col gap-14 items-center justify-center h-full px-9 py-4">
-                <div className="text-7xl text-white font-bold">
-                  <h1>Tools to help you make financially healthy choices.</h1>
-                </div>
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  className={`${
+                    inView ? "animate-drop-up" : ""
+                  }  w-full h-[800px] m-auto`}
+                  iconClassName={"bg-white group-hover:opacity-80"}
+                  iconStroke={"black"}
+                  bg="black"
+                >
+                  <div className="flex flex-col gap-14 items-center justify-center h-full px-9 py-4">
+                    <div className="text-7xl text-white font-bold">
+                      <h1>
+                        Tools to help you make financially healthy choices.
+                      </h1>
+                    </div>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard
@@ -458,27 +561,36 @@ const TileFlipSection = () => {
         <TiltTemplate
           className={"w-full h-[800px]"}
           childrenFront={
-            <TileTemplate
-              className={"w-full h-[800px] m-auto"}
-              iconClassName={"bg-gray-400 group-hover:opacity-80"}
-              iconStroke={"currentColor"}
-            >
-              <img
-                className="w-32 object-cover mt-16 absolute top-18 right-20"
-                src="/images/logo_mastercard.png"
-                alt="logo"
-              />
-              <h1 className="text-gray-400 text-5xl font-semibold absolute top-16 left-14">
-                Goldman
-                <br />
-                Sachs
-              </h1>
-              <div className="flex items-center justify-center h-full px-9 py-4">
-                <div className="text-7xl text-gray-400 font-bold">
-                  <h1>Trusted partners for a different kind of credit card.</h1>
-                </div>
-              </div>
-            </TileTemplate>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <TileTemplate
+                  ref={ref}
+                  className={`${
+                    inView ? "animate-drop-up" : ""
+                  } w-full h-[800px] m-auto`}
+                  iconClassName={"bg-gray-400 group-hover:opacity-80"}
+                  iconStroke={"currentColor"}
+                >
+                  <img
+                    className="w-32 object-cover mt-16 absolute top-18 right-20"
+                    src="/images/logo_mastercard.png"
+                    alt="logo"
+                  />
+                  <h1 className="text-gray-400 text-5xl font-semibold absolute top-16 left-14">
+                    Goldman
+                    <br />
+                    Sachs
+                  </h1>
+                  <div className="flex items-center justify-center h-full px-9 py-4">
+                    <div className="text-7xl text-gray-400 font-bold">
+                      <h1>
+                        Trusted partners for a different kind of credit card.
+                      </h1>
+                    </div>
+                  </div>
+                </TileTemplate>
+              )}
+            </InView>
           }
           childrenBack={
             <BackCard

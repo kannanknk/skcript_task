@@ -3,7 +3,7 @@ import React from "react";
 const ApplyCardSection = () => {
   return (
     <section
-      className="relative"
+      className="relative overflow-hidden"
       style={{
         background:
           "linear-gradient(90deg, #E9BCF2 7%, #F8B7C5, #FEC49A, #FFD493, #FFEDBE 80%, #FFF7E0)",
@@ -31,7 +31,7 @@ const ApplyCardSection = () => {
           </button>
         </div>
       </div>
-      <div className="absolute w-full p-3 bg-white opacity-70 top-0 left-0 flex items-center justify-center">
+      <div className="animate-drop-down absolute w-full p-3 bg-white opacity-70 top-0 left-0 flex items-center justify-center">
         <p>
           With every purchase, get up to 3% Daily Cash back to spend or save.{" "}
           <span className="text-blue-600 hover:underline hover:cursor-pointer">
@@ -42,6 +42,7 @@ const ApplyCardSection = () => {
       </div>
       <div className="w-full absolute bottom-0 left-0 flex items-center justify-center">
         <div
+          className="animate-drop-up"
           style={{
             height: "270px",
             width: "359px",
